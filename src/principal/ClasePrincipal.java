@@ -5,8 +5,8 @@
  */
 package principal;
 
-import Controlador.OyenteJugadores;
-import Vistas.VentanaJugadores;
+import controlador.OyenteJugadores;
+import vistas.VentanaJugadores;
 import java.awt.Color;
 import javax.swing.JFrame;
 import modelo.Jugadores;
