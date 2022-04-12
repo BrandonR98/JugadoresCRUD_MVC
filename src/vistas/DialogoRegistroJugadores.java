@@ -71,7 +71,7 @@ public class DialogoRegistroJugadores extends javax.swing.JDialog {
         etiquetaNombre.setText("Nombre: ");
         panelNorte.add(etiquetaNombre);
 
-        campoNombre.setColumns(30);
+        campoNombre.setColumns(25);
         panelNorte.add(campoNombre);
 
         getContentPane().add(panelNorte, java.awt.BorderLayout.NORTH);

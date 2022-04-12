@@ -70,7 +70,7 @@ public class OyenteJugadores extends WindowAdapter implements ActionListener {
             case "inicializar":
                 inicializarJugadores();
                 break;
-            case "actulizar":
+            case "actualizar":
                 actualizarJugador();
                 break;
             case "cancelar":
@@ -186,13 +186,37 @@ public class OyenteJugadores extends WindowAdapter implements ActionListener {
         Jugador jugador = new Jugador(dialogoRegistroJugadores.getComponentes());
         String nombre = jugador.getNombre();
         String accion = dialogoRegistroJugadores.getBotonAceptar().getText();
-        switch(accion){
+        switch (accion) {
             case "Adicionar":
+                System.out.println("Se agrego un registro");
+                adicionar(nombre, jugador);
                 break;
             case "Modificar":
+                modificar(nombre, jugador);
                 break;
             case "Eliminar":
                 break;
+        }
+    }
+
+    private void adicionar(String nombre, Jugador jugador/*, String accion*/) {
+        if (!jugadores.containsKey(nombre)) {
+            jugadores.adicionarJugador(jugador);
+            defaultTableModel.addRow(jugador.getJugador());
+            ventana.actualizarEtiquetas();
+            dialogoRegistroJugadores.setVisible(false);
+        } else {
+            mostrarMensajeError("Error de registro", "El jugador ya esta registrado");
+        }
+    }
+
+    private void modificar(String nombre, Jugador jugador/*, String accion*/) {
+        if (jugadores.containsKey(nombre)) {
+            jugadores.modificarJugador(jugador);
+            ventana.actualizarEtiquetas();
+            dialogoRegistroJugadores.setVisible(false);
+        } else {
+            mostrarMensajeError("Error de registro", "El jugador no esta registrado");
         }
     }
 }
