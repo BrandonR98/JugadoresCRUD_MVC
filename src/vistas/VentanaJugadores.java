@@ -101,7 +101,7 @@ public class VentanaJugadores extends javax.swing.JFrame {
         panelCentro.setToolTipText("");
         panelCentro.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        tablaJugadores.setBorder(javax.swing.BorderFactory.createLineBorder(getBackground(), 5));
+        tablaJugadores.setBorder(javax.swing.BorderFactory.createLineBorder(getBackground(), 2));
         tablaJugadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},

@@ -30,6 +30,11 @@ public class OyenteJugadores extends WindowAdapter implements ActionListener {
     private final DialogoRegistroJugadores dialogoRegistroJugadores;
     private final DefaultTableModel defaultTableModel;
 
+    public static final boolean NOMBRE_ON = true;
+    public static final boolean NOMBRE_OFF = false;
+    public static final boolean COMBOS_ON = true;
+    public static final boolean COMBOS_OFF = false;
+
     public OyenteJugadores(Jugadores jugadores, VentanaJugadores ventana) {
         this.jugadores = jugadores;
         this.ventana = ventana;
@@ -53,10 +58,24 @@ public class OyenteJugadores extends WindowAdapter implements ActionListener {
             case "salir":
                 salirPrograma();
                 break;
-            /*case "":
+            case "registrar":
+                registrarJugador();
                 break;
-            case "":
-                break;*/
+            case "editar":
+                editarJugar();
+                break;
+            case "eliminar":
+                eliminarJugador();
+                break;
+            case "inicializar":
+                inicializarJugadores();
+                break;
+            case "actulizar":
+                actualizarJugador();
+                break;
+            case "cancelar":
+                dialogoRegistroJugadores.setVisible(false);
+                break;
         }
     }
 
@@ -116,4 +135,64 @@ public class OyenteJugadores extends WindowAdapter implements ActionListener {
         }
     }
 
+    public void registrarJugador() {
+        String[] valores = {"", "Soleado", "Caluroso", "Alta", "Sí", "Sí"};
+        dialogoRegistroJugadores.setComponentes(valores);
+        dialogoRegistroJugadores.show("Registrar jugador", "Adicionar", NOMBRE_ON, COMBOS_ON);
+    }
+
+    public void editarJugar() {
+        if (validarJugador()) {
+            dialogoRegistroJugadores.show("Modificar jugador", "Modificar", NOMBRE_OFF, COMBOS_ON);
+        }
+    }
+
+    public void eliminarJugador() {
+        if (validarJugador()) {
+            dialogoRegistroJugadores.show("Eliminar jugador", "Eliminar", NOMBRE_OFF, COMBOS_OFF);
+        }
+    }
+
+    public void inicializarJugadores() {
+        int seleccion = mostrarMensajeSeleccion("Inicializar jugadores",
+                "¿Desea eliminar todos los jugadores?");
+        if (seleccion == JOptionPane.YES_OPTION) {
+            jugadores.inicializarJugadores();
+            defaultTableModel.setRowCount(0);
+            ventana.actualizarEtiquetas();
+        }
+    }
+
+    public boolean validarJugador() {
+        int renglon = ventana.getTablaJugadores().getSelectedRow();
+        if (renglon != -1) {
+            String[] valores = {
+                (String) defaultTableModel.getValueAt(renglon, 0),
+                (String) defaultTableModel.getValueAt(renglon, 1),
+                (String) defaultTableModel.getValueAt(renglon, 2),
+                (String) defaultTableModel.getValueAt(renglon, 3),
+                (String) defaultTableModel.getValueAt(renglon, 4),
+                (String) defaultTableModel.getValueAt(renglon, 5)
+            };
+            dialogoRegistroJugadores.setComponentes(valores);
+        } else {
+            this.mostrarMensajeError("Error al registrar", "Debes seleccionar un registro de la tabla");
+            return false;
+        }
+        return true;
+    }
+
+    private void actualizarJugador() {
+        Jugador jugador = new Jugador(dialogoRegistroJugadores.getComponentes());
+        String nombre = jugador.getNombre();
+        String accion = dialogoRegistroJugadores.getBotonAceptar().getText();
+        switch(accion){
+            case "Adicionar":
+                break;
+            case "Modificar":
+                break;
+            case "Eliminar":
+                break;
+        }
+    }
 }

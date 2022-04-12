@@ -25,12 +25,12 @@ public class DialogoRegistroJugadores extends javax.swing.JDialog {
         initComponents();
         this.setSize(400, 300);
     }
-    
+
     public void addEventos(OyenteJugadores oyente) {
         this.botonAceptar.addActionListener(oyente);
         this.botonCancelar.addActionListener(oyente);
         this.addWindowListener(oyente);
-        
+
         this.botonAceptar.setName("actualizar");
         this.botonCancelar.setName("cancelar");
         this.setName("dialogo");
@@ -65,7 +65,7 @@ public class DialogoRegistroJugadores extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        panelNorte.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del jugador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
+        panelNorte.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(getBackground(), 5), "Datos del jugador", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
         etiquetaNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         etiquetaNombre.setText("Nombre: ");
@@ -76,7 +76,7 @@ public class DialogoRegistroJugadores extends javax.swing.JDialog {
 
         getContentPane().add(panelNorte, java.awt.BorderLayout.NORTH);
 
-        panelCentro.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Panel Centro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Montserrat", 0, 14))); // NOI18N
+        panelCentro.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(getBackground(), 5), "Panel Centro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Montserrat", 0, 14))); // NOI18N
         panelCentro.setLayout(new java.awt.GridLayout(5, 2));
 
         etiquetaPronosticos.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
@@ -159,7 +159,7 @@ public class DialogoRegistroJugadores extends javax.swing.JDialog {
     public javax.swing.JButton getBotonAceptar() {
         return botonAceptar;
     }
-    
+
     public void setComponentes(String[] valores) {
         this.campoNombre.setText(valores[0]);
         this.comboBoxPronostico.setSelectedItem(valores[1]);
@@ -168,7 +168,7 @@ public class DialogoRegistroJugadores extends javax.swing.JDialog {
         this.comboBoxViento.setSelectedItem(valores[4]);
         this.comboBoxJugara.setSelectedItem(valores[5]);
     }
-    
+
     public String[] getComponentes() {
         return new String[]{
             this.campoNombre.getText(),
@@ -179,13 +179,13 @@ public class DialogoRegistroJugadores extends javax.swing.JDialog {
             (String) this.comboBoxJugara.getSelectedItem()
         };
     }
-    
+
     public void show(String textoTitulo, String textoBoton,
             boolean estadoNombre, boolean estadoCombos) {
-        
+
         setTitle(textoTitulo);
         botonAceptar.setText(textoBoton);
-        campoNombre.setEnabled(estadoCombos);
+        campoNombre.setEnabled(estadoNombre);
         comboBoxPronostico.setEnabled(estadoCombos);
         comboBoxTemperatura.setEnabled(estadoCombos);
         comboBoxHumedad.setEnabled(estadoCombos);
@@ -193,7 +193,7 @@ public class DialogoRegistroJugadores extends javax.swing.JDialog {
         comboBoxJugara.setEnabled(estadoCombos);
         JFrame padre = (JFrame) this.getParent();
         setLocation(100, 100);
-        setVisible(true);        
+        setVisible(true);
     }
-    
+
 }
